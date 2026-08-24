@@ -1,0 +1,14 @@
+{
+  "name": "fki-survey",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FKI 한경협국제경영원 인재교육사업실 - 자체 설문 시스템",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2"
+  }
+}

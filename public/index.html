@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"
+    />
+    <meta name="theme-color" content="#0b0b0c" />
+    <meta name="description" content="FKI 한경협국제경영원 인재교육사업실 교육과정 만족도조사" />
+    <title>교육과정 만족도조사 · FKI 한경협국제경영원</title>
+    <link rel="stylesheet" href="/css/app.css" />
+  </head>
+  <body>
+    <!-- ================= 상단 진행 바 (설문 중에만 노출) ================= -->
+    <header class="topbar" id="topbar" hidden>
+      <div class="topbar__inner">
+        <div class="topbar__title" id="topbarTitle"></div>
+        <div class="topbar__step" id="topbarStep"></div>
+      </div>
+      <div class="progress"><div class="progress__fill" id="progressFill"></div></div>
+    </header>
+
+    <main>
+      <!-- ================= 1. 표지 ================= -->
+      <section class="screen is-active" id="screenCover">
+        <div class="shell">
+          <div class="cover">
+            <div class="cover__frame">
+              <div class="crest"><span></span><i></i><span></span></div>
+              <p class="eyebrow">FKI · Human Resource Development</p>
+              <h1>교육과정 <em>만족도조사</em></h1>
+              <p>
+                한경협국제경영원 인재교육사업실은 여러분의 의견을 바탕으로 교육을 설계합니다.
+                응답은 통계 목적으로만 활용되며 소중히 다루어집니다.
+              </p>
+              <div class="live">
+                <span class="live__dot"></span>
+                지금까지 <b id="liveTotal">0</b>명이 참여했습니다
+              </div>
+              <div>
+                <button class="btn" id="btnStart">설문 시작하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 2. 유형 선택 ================= -->
+      <section class="screen" id="screenPick">
+        <div class="shell">
+          <div class="pick">
+            <div class="pick__head">
+              <div class="crest"><span></span><i></i><span></span></div>
+              <h2>참여하실 설문을 선택해 주세요</h2>
+              <p>안내받으신 유형을 선택하시면 됩니다.</p>
+            </div>
+            <div class="cards" id="surveyCards"></div>
+            <div style="margin-top: 26px; text-align: center">
+              <button class="btn btn--ghost btn--sm" data-goto="cover">처음으로</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3. 설문 진행 ================= -->
+      <section class="screen" id="screenForm">
+        <div class="shell">
+          <div class="form">
+            <div class="section-head">
+              <p class="eyebrow" id="formEyebrow"></p>
+              <h2 id="sectionTitle"></h2>
+              <p id="sectionDesc"></p>
+            </div>
+            <div id="questionList"></div>
+          </div>
+        </div>
+        <nav class="navbar">
+          <div class="navbar__inner">
+            <button class="btn btn--ghost" id="btnPrev">이전</button>
+            <button class="btn" id="btnNext">다음</button>
+          </div>
+        </nav>
+      </section>
+
+      <!-- ================= 4. 완료 ================= -->
+      <section class="screen" id="screenDone">
+        <div class="shell">
+          <div class="done">
+            <div class="done__seal">
+              <svg viewBox="0 0 24 24"><path d="M4 12.5l5.2 5.2L20 7" /></svg>
+            </div>
+            <h2>응답이 제출되었습니다</h2>
+            <p id="doneMessage">소중한 의견 감사합니다.</p>
+            <div class="live">
+              <span class="live__dot"></span>
+              현재 <b id="doneCount">0</b>명이 응답을 완료했습니다
+            </div>
+            <div style="margin-top: 8px">
+              <button class="btn btn--ghost" data-goto="cover">처음으로</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= 푸터 로고 ================= -->
+    <footer class="brand">
+      <div class="shell">
+        <img
+          class="brand__logo"
+          id="brandLogo"
+          src="/assets/logo.png"
+          alt="FKI 한경협국제경영원"
+          hidden
+        />
+        <div id="brandFallback">
+          <div class="brand__mark">FKI</div>
+          <div class="brand__name">한경협국제경영원</div>
+          <div class="brand__dept">인재교육사업실</div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

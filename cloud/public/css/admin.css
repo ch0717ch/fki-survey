@@ -1,0 +1,448 @@
+/* ============================================================
+   관리자 화면 — app.css의 토큰을 그대로 사용한다.
+   ============================================================ */
+
+body.admin {
+  background: linear-gradient(180deg, #0b0b0c, #0e0e11 40%, #0b0b0c);
+}
+
+/* ---------- 로그인 ---------- */
+
+.gate {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.gate__box {
+  width: 100%;
+  max-width: 380px;
+  border: 1px solid var(--gold-line);
+  border-radius: var(--r-lg);
+  padding: 40px 28px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0));
+}
+
+.gate__box h1 {
+  font-size: 21px;
+  margin-bottom: 6px;
+}
+
+.gate__box p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 24px;
+}
+
+.gate__box .field {
+  text-align: center;
+  margin-bottom: 14px;
+  letter-spacing: 0.18em;
+}
+
+/* ---------- 셸 ---------- */
+
+.admin-top {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(11, 11, 12, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-top__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-top__brand {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--gold-hi);
+  letter-spacing: 0.06em;
+  margin-right: auto;
+}
+
+.admin-top__brand small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+.admin-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 22px 20px 80px;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1000px) {
+  .admin-wrap {
+    grid-template-columns: 296px 1fr;
+    align-items: start;
+  }
+
+  .side {
+    position: sticky;
+    top: 76px;
+  }
+}
+
+/* ---------- 사이드 목록 ---------- */
+
+.side__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.side__head h2 {
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  font-family: var(--sans);
+  font-weight: 500;
+}
+
+.side__list {
+  display: grid;
+  gap: 9px;
+}
+
+.side__item {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: var(--ink-2);
+  border-radius: var(--r-md);
+  padding: 14px 15px;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+  font: inherit;
+  color: inherit;
+}
+
+.side__item:hover {
+  border-color: var(--gold-line);
+}
+
+.side__item.is-on {
+  border-color: var(--gold);
+  background: var(--gold-veil);
+}
+
+.side__item .tag {
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.side__item .name {
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.side__item .n {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.side__item .n b {
+  color: var(--gold-hi);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 편집 패널 ---------- */
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0));
+  padding: 22px 20px;
+  margin-bottom: 18px;
+}
+
+.panel__title {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+
+.grid2 {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 700px) {
+  .grid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid2 .span2 {
+    grid-column: 1 / -1;
+  }
+}
+
+.lab {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.field--sm {
+  padding: 10px 13px;
+  font-size: 14.5px;
+}
+
+select.field {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%),
+    linear-gradient(135deg, var(--gold) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 38px;
+}
+
+select.field option {
+  background: var(--ink-2);
+  color: var(--paper);
+}
+
+/* 토글 */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--paper-dim);
+  user-select: none;
+  min-height: 40px;
+}
+
+.toggle input {
+  position: absolute;
+  opacity: 0;
+}
+
+.toggle__track {
+  width: 44px;
+  height: 25px;
+  border-radius: 999px;
+  background: var(--ink-4);
+  position: relative;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.toggle__track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--paper-dim);
+  transition: transform 0.2s cubic-bezier(0.3, 1.3, 0.5, 1), background 0.2s ease;
+}
+
+.toggle input:checked + .toggle__track {
+  background: var(--gold-deep);
+}
+
+.toggle input:checked + .toggle__track::after {
+  transform: translateX(19px);
+  background: var(--gold-hi);
+}
+
+/* ---------- 섹션 / 문항 편집 ---------- */
+
+.sec-card {
+  border: 1px solid var(--gold-line);
+  border-radius: var(--r-md);
+  padding: 18px 16px;
+  margin-bottom: 16px;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.sec-card__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.sec-card__no {
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--gold);
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.q-card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 15px 14px;
+  margin-bottom: 11px;
+  background: var(--ink-2);
+}
+
+.q-card__bar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.q-card__no {
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 22px;
+}
+
+/* +/- 원형 버튼 */
+
+.rnd {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--ink-3);
+  color: var(--paper-dim);
+  font-size: 19px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  padding: 0;
+}
+
+.rnd:hover {
+  border-color: var(--gold);
+  color: var(--gold-hi);
+}
+
+.rnd--minus:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.rnd--add {
+  width: auto;
+  border-radius: 999px;
+  padding: 0 16px;
+  height: 38px;
+  font-size: 13.5px;
+  gap: 6px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--gold);
+  border-color: var(--gold-line);
+  background: transparent;
+}
+
+.rnd--add:hover {
+  background: var(--gold-veil);
+}
+
+/* 보기 편집 */
+
+.opt-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.opt-row .field {
+  flex: 1;
+}
+
+.opt-row .idx {
+  font-size: 12px;
+  color: var(--muted);
+  width: 18px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ---------- 액션 바 ---------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.savebar {
+  position: sticky;
+  bottom: 0;
+  z-index: 30;
+  margin: 0 -20px -80px;
+  padding: 14px 20px calc(env(safe-area-inset-bottom) + 14px);
+  background: linear-gradient(180deg, rgba(11, 11, 12, 0.4), rgba(11, 11, 12, 0.97) 40%);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.savebar__hint {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-right: auto;
+}
+
+.link-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 60px 20px;
+  font-size: 14px;
+}
