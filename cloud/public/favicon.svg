@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0DA96"/>
+      <stop offset=".48" stop-color="#C9A227"/>
+      <stop offset="1" stop-color="#8A6D14"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#17171B"/>
+      <stop offset="1" stop-color="#08080A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="13" fill="url(#ink)"/>
+  <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="12"
+        fill="none" stroke="#C9A227" stroke-opacity=".42" stroke-width="1.5"/>
+
+  <!-- 사이트 상단 crest와 같은 다이아몬드 모티프 -->
+  <g transform="translate(32 32)">
+    <rect x="-14.5" y="-14.5" width="29" height="29" rx="3"
+          transform="rotate(45)" fill="none"
+          stroke="url(#gold)" stroke-opacity=".55" stroke-width="2"/>
+    <rect x="-7.5" y="-7.5" width="15" height="15" rx="2"
+          transform="rotate(45)" fill="url(#gold)"/>
+  </g>
+</svg>
