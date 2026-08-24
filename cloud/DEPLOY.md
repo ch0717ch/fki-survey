@@ -65,7 +65,39 @@ AUTH_SECRET=아무_긴_랜덤_문자열
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 
-## 4단계 — 배포
+## 현재 배포 상태 (구성 완료)
+
+| | |
+|---|---|
+| 주소 | https://fki-survey.pages.dev |
+| 관리자 | https://fki-survey.pages.dev/admin |
+| GitHub | https://github.com/ch0717ch/fki-survey (private) |
+| Pages 프로젝트 | `fki-survey` — GitHub 연결됨 |
+| 루트 디렉터리 | `cloud` |
+| 빌드 명령 | 없음 |
+| 출력 디렉터리 | `public` |
+| 프로덕션 브랜치 | `main` |
+
+**`main` 브랜치에 푸시하면 Cloudflare가 자동으로 배포한다.** 수동 배포는 필요 없다.
+
+```bash
+git add -A
+git commit -m "변경 내용"
+git push
+```
+
+다른 컴퓨터에서 작업하려면:
+
+```bash
+git clone https://github.com/ch0717ch/fki-survey.git
+cd fki-survey/cloud
+npm install
+```
+
+`.env.deploy` 는 저장소에 없다(`.gitignore`). 수동 배포나 환경변수 재등록이 필요할 때만 쓰이므로,
+평소 코드 작업에는 없어도 된다. 필요하면 3단계를 참고해 다시 만든다.
+
+## 4단계 — 처음부터 새로 배포할 때
 
 ```bash
 npm install
