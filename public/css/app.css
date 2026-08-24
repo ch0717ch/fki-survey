@@ -865,14 +865,6 @@ textarea.field {
   margin-top: 40px;
 }
 
-.brand__logo {
-  max-height: 46px;
-  width: auto;
-  margin: 0 auto 12px;
-  display: block;
-  opacity: 0.95;
-}
-
 .brand__mark {
   font-family: var(--serif);
   font-size: 25px;

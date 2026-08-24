@@ -450,15 +450,5 @@ document.querySelectorAll('[data-goto="cover"]').forEach((btn) => {
   });
 });
 
-// 로고 파일(public/assets/logo.png)이 있으면 이미지로, 없으면 활자 로고로 표시한다.
-const logo = $('#brandLogo');
-logo.addEventListener('load', () => {
-  logo.hidden = false;
-  $('#brandFallback').hidden = true;
-});
-logo.addEventListener('error', () => {
-  logo.remove();
-});
-
 loadSurveys().catch(() => {});
 connectLive();
