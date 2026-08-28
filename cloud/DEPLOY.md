@@ -124,7 +124,8 @@ npx wrangler pages secret put SUPABASE_SERVICE_ROLE_KEY --project-name fki-surve
 
 - [ ] 응답 화면에서 A형·B형 각각 1건 제출해 보기
 - [ ] 관리자에서 엑셀 다운로드 → 파일명이 `설문명_유형_날짜.xlsx` 인지 확인
-- [ ] 관리자 비밀번호가 `fki2026` 이 아닌지 확인
+- [ ] `ADMIN_PASSWORD` 와 `AUTH_SECRET` 이 Pages 환경변수에 등록돼 있는지 확인
+      (둘 중 하나라도 비면 관리자 로그인이 거부된다)
 - [ ] 휴대폰에서 실제로 열어보기
 - [ ] A형처럼 이름을 받는 설문은 개인정보 수집·이용 동의 문구를 안내문에 넣기
 

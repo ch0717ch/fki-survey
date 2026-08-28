@@ -10,8 +10,13 @@ const { templateA, templateB, BLANK_QUESTION } = require('./lib/templates');
 const { buildWorkbook, buildFileName } = require('./lib/excel');
 
 const PORT = Number(process.env.PORT) || 6767;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'fki2026';
 const TOKEN_TTL_MS = 1000 * 60 * 60 * 12;
+
+// 이 저장소는 공개되어 있다. 기본 비밀번호를 코드에 박아두면 그대로 공개되므로,
+// ADMIN_PASSWORD 가 없으면 실행할 때마다 임시 비밀번호를 만들어 콘솔에 찍는다.
+const ADMIN_PASSWORD_FROM_ENV = !!process.env.ADMIN_PASSWORD;
+const ADMIN_PASSWORD =
+  process.env.ADMIN_PASSWORD || crypto.randomBytes(6).toString('base64url');
 
 const app = express();
 app.use(express.json({ limit: '2mb' }));
@@ -320,7 +325,10 @@ app.listen(PORT, '0.0.0.0', () => {
     '  FKI 한경협국제경영원 인재교육사업실 — 설문 시스템',
     '  ─────────────────────────────────────────────',
     `  응답자 화면 : http://localhost:${PORT}/`,
-    `  관리자 화면 : http://localhost:${PORT}/admin  (비밀번호: ${ADMIN_PASSWORD})`,
+    `  관리자 화면 : http://localhost:${PORT}/admin`,
+    ADMIN_PASSWORD_FROM_ENV
+      ? '  관리자 비밀번호 : ADMIN_PASSWORD 환경변수 값'
+      : `  관리자 비밀번호 : ${ADMIN_PASSWORD}  (이번 실행에만 유효한 임시값)`,
   ];
   lanAddresses().forEach((ip) => lines.push(`  모바일 접속 : http://${ip}:${PORT}/`));
   lines.push('');

@@ -120,9 +120,13 @@ function b64url(bytes) {
 }
 
 async function hmacKey(env) {
+  // 폴백 기본값을 두면 안 된다. 이 저장소는 공개되어 있으므로,
+  // 기본 서명키가 코드에 박혀 있으면 누구나 관리자 토큰을 위조할 수 있다.
+  if (!env.AUTH_SECRET) throw new Error('AUTH_SECRET 환경변수가 설정되지 않았습니다.');
+
   return crypto.subtle.importKey(
     'raw',
-    new TextEncoder().encode(env.AUTH_SECRET || 'fki-default-secret'),
+    new TextEncoder().encode(env.AUTH_SECRET),
     { name: 'HMAC', hash: 'SHA-256' },
     false,
     ['sign']
@@ -287,10 +291,25 @@ async function route(seg, method, request, env, url) {
 
   // POST /api/admin/login
   if (seg[0] === 'admin' && seg[1] === 'login' && method === 'POST') {
+    // 환경변수가 비어 있으면 '' !== '' 가 false 라서 빈 비밀번호로 로그인이 뚫린다.
+    // 설정이 누락된 경우에는 로그인 자체를 거부한다.
+    if (!env.ADMIN_PASSWORD) {
+      return fail('관리자 비밀번호가 서버에 설정되지 않았습니다.', 503);
+    }
+
     const body = await request.json().catch(() => ({}));
-    if (String(body.password || '') !== String(env.ADMIN_PASSWORD || '')) {
+    const given = String(body.password || '');
+
+    // 길이를 먼저 비교해 조기 반환하고, 같으면 상수 시간으로 비교한다.
+    if (given.length !== env.ADMIN_PASSWORD.length) {
       return fail('비밀번호가 올바르지 않습니다.', 401);
     }
+    let diff = 0;
+    for (let i = 0; i < given.length; i += 1) {
+      diff |= given.charCodeAt(i) ^ env.ADMIN_PASSWORD.charCodeAt(i);
+    }
+    if (diff !== 0) return fail('비밀번호가 올바르지 않습니다.', 401);
+
     return json({ token: await signToken(env) });
   }
 

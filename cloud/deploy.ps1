@@ -42,8 +42,8 @@ if ($missing) {
   exit 1
 }
 
-if ($cfg['ADMIN_PASSWORD'] -eq 'fki2026') {
-  Write-Host "[!] ADMIN_PASSWORD 가 기본값 'fki2026' 입니다. 외부 공개 전에 바꾸는 것을 권합니다." -ForegroundColor Yellow
+if ($cfg['ADMIN_PASSWORD'].Length -lt 10) {
+  Write-Host "[!] ADMIN_PASSWORD 가 너무 짧습니다. 관리자 화면에서는 응답자 이름까지 내려받을 수 있으니 긴 값을 권합니다." -ForegroundColor Yellow
 }
 
 if ($cfg['CLOUDFLARE_API_TOKEN']) { $env:CLOUDFLARE_API_TOKEN = $cfg['CLOUDFLARE_API_TOKEN'] }
