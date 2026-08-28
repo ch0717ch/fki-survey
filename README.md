@@ -1,6 +1,59 @@
-# FKI 한경협국제경영원 인재교육사업실 — 설문 시스템
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0B0B0C,45:8A6D14,100:C9A227&height=180&section=header&text=Survey%20Platform&fontSize=44&fontColor=F6F4F0&fontAlignY=36&desc=%ED%95%9C%EA%B2%BD%ED%98%91%EA%B5%AD%EC%A0%9C%EA%B2%BD%EC%98%81%EC%9B%90%20%C2%B7%20%EC%9E%90%EC%B2%B4%20%EC%84%A4%EB%AC%B8%20%EC%8B%9C%EC%8A%A4%ED%85%9C&descSize=15&descAlignY=57&animation=fadeIn" alt="" />
 
-블랙·화이트·골드 톤의 자체 설문 플랫폼. 모바일 응답을 기준으로 설계했다.
+<div align="center">
+
+**구글폼 대신 쓰려고 직접 만든 설문 플랫폼.**
+블랙·화이트·골드 톤으로 디자인했고, 모바일 응답을 기준으로 설계했다.
+
+<br/>
+
+![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![](https://img.shields.io/badge/Cloudflare_Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)
+![](https://img.shields.io/badge/Supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+
+[![사이트 열기](https://img.shields.io/badge/▶_설문_참여하기-C9A227?style=for-the-badge&logoColor=0B0B0C)](https://fki-survey.pages.dev)
+
+![](https://img.shields.io/github/last-commit/ch0717ch/fki-survey?style=flat-square&color=C9A227&label=최근%20작업)
+![](https://img.shields.io/github/languages/code-size/ch0717ch/fki-survey?style=flat-square&color=8A6D14&label=코드%20크기)
+![](https://img.shields.io/github/commit-activity/t/ch0717ch/fki-survey?style=flat-square&color=0B0B0C&label=커밋)
+
+</div>
+
+---
+
+## 왜 만들었나
+
+교육 만족도조사를 받아야 하는데 구글폼은 두 가지가 걸렸다.
+
+- **디자인을 우리 톤으로 못 바꾼다.** 기관 교육에 쓰기엔 인상이 가볍다.
+- **응답자 대부분이 휴대폰으로 연다.** 구글폼 모바일은 손가락으로 누르기에 최적화돼 있지 않다.
+
+그래서 모바일을 기준으로 다시 설계했다. 선택지는 전부 54px 이상 풀폭 카드고,
+입력창은 16px 이상이라 iOS에서 포커스할 때 화면이 확대되지 않는다.
+
+## 어떻게 굴러가나
+
+```mermaid
+flowchart LR
+    A[응답자<br/>모바일] -->|응답 제출| B[Cloudflare Pages<br/>Functions]
+    B -->|service_role| C[(Supabase<br/>PostgreSQL)]
+    D[관리자] -->|문항 편집| B
+    C -->|응답 조회| D
+    D -->|브라우저에서 생성| E[xlsx 3시트]
+
+    style A fill:#0B0B0C,color:#F6F4F0,stroke:#C9A227
+    style B fill:#F38020,color:#fff,stroke:#8A6D14
+    style C fill:#3FCF8E,color:#0B0B0C,stroke:#8A6D14
+    style D fill:#0B0B0C,color:#F6F4F0,stroke:#C9A227
+    style E fill:#C9A227,color:#0B0B0C,stroke:#8A6D14
+```
+
+브라우저에는 **Supabase 키가 일절 내려가지 않는다.** 두 테이블에 RLS를 켜되 정책을
+하나도 만들지 않아서 anon 키로는 아무것도 읽지 못하고, 모든 접근은 Worker가
+service_role로만 수행한다.
+
+엑셀은 Workers에서 exceljs가 돌지 않아(Node 스트림 의존) 관리자 브라우저에서 만든다.
 
 ## 실행
 
@@ -82,3 +135,11 @@ set ADMIN_PASSWORD=원하는비밀번호 && node server.js
 - [ ] HTTPS 적용 (리버스 프록시 권장)
 - [ ] `data/` 디렉터리 정기 백업
 - [ ] A형처럼 이름을 받는 설문은 개인정보 수집·이용 동의 문구를 안내문에 추가
+
+---
+
+<div align="center">
+<sub>인턴 때 실제 교육 만족도조사를 받으며 만들었고, 지금도 굴러가고 있습니다.</sub>
+</div>
+
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:C9A227,55:8A6D14,100:0B0B0C&height=120&section=footer" alt="" />
